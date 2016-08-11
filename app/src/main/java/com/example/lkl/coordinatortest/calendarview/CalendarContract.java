@@ -18,6 +18,7 @@ public interface CalendarContract {
 		void clickScheduleDate(View view);	//点击有日程的一天
 		void clearBackground(View view);	//清除背景颜色
 		void setTodayBackground(View view);	//设置今天的图标
+		void setCurrentItem(int position);	//设置当前的viewpager
 		void onDestory();
 	}
 	
@@ -33,6 +34,8 @@ public interface CalendarContract {
 		void resetCurrentItem(int position);	//重置当前的position
 		void loadTitleData();
 		void clickItem(AdapterView<?> parent, View view, int position, long id);	//点击某一天执行的动作
+		void clickLeft();
+		void clickRight();
 		void onDestory();
 	}	
 	
