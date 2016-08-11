@@ -58,7 +58,6 @@ public class PagerItemView extends CoordinatorLayout implements AdapterView.OnIt
         LayoutParams lp = null;
         try
         {
-
             //日历部分
             mGridView = new CustomGridView(mContext);
             if (null != mGridView)
@@ -66,6 +65,7 @@ public class PagerItemView extends CoordinatorLayout implements AdapterView.OnIt
                 mGridView.setGravity(Gravity.CENTER);
                 mGridView.setNumColumns(GridAdapter.NUM_COLUMS);    //列数
                 mGridView.setSelector(new ColorDrawable(Color.TRANSPARENT));
+                mGridView.setBackgroundColor(Color.parseColor("#F5F5F5"));
                 mAdapter = new GridAdapter(mContext);
                 if (null != mAdapter)
                 {

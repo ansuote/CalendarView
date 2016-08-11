@@ -102,6 +102,30 @@ public class GridItemView extends LinearLayout {
 		}
 	}
 
+	/**
+	 * 设置国历的字体颜色
+	 * @param color
+     */
+	public void setNationTextColor(int color)
+	{
+		if (null != mNation)
+		{
+			mNation.setTextColor(color);
+		}
+	}
+
+	/**
+	 * 设置国历的字体大小
+	 * @param size
+     */
+	public void setNationTextSize(float size)
+	{
+		if (null != mNation)
+		{
+			mNation.setTextSize(size);
+		}
+	}
+
     public String getNationText() 
     {
     	if (null != mNation && null != mNation.getText())

@@ -15,9 +15,9 @@ import com.example.lkl.coordinatortest.calendarview.presenter.CalendarPresenter;
 import com.example.lkl.coordinatortest.calendarview.view.body.CalendarBody;
 import com.example.lkl.coordinatortest.calendarview.view.body.OnCalendarListener;
 import com.example.lkl.coordinatortest.calendarview.view.body.OnCalendarPageChangeListener;
-import com.example.lkl.coordinatortest.calendarview.view.body.viewpager.view.gridview.GridItemView;
 import com.example.lkl.coordinatortest.calendarview.view.body.viewpager.CalendarFragment;
-import com.example.lkl.coordinatortest.calendarview.view.drawable.CircleDrawable;
+import com.example.lkl.coordinatortest.calendarview.view.body.viewpager.view.gridview.GridItemView;
+import com.example.lkl.coordinatortest.calendarview.view.widget.drawable.CircleDrawable;
 
 
 /**
@@ -25,8 +25,9 @@ import com.example.lkl.coordinatortest.calendarview.view.drawable.CircleDrawable
  * Created by LKL on 2016-7-27.
  */
 public class CalendarView extends LinearLayout implements CalendarContract.IView,
-        OnCalendarListener,
-        OnCalendarPageChangeListener
+                                                            OnCalendarListener,
+                                                            OnCalendarPageChangeListener,
+                                                            CalendarTitle.OnTitleBtnClickListener
 {
     private Context mContext;
     private CalendarTitle mTitleLayout;
@@ -93,6 +94,8 @@ public class CalendarView extends LinearLayout implements CalendarContract.IView
         {
             this.setOrientation(LinearLayout.VERTICAL);
 
+
+
             //titleLayout
             mTitleLayout = new CalendarTitle(mContext);
             if (null != mTitleLayout)
@@ -123,6 +126,11 @@ public class CalendarView extends LinearLayout implements CalendarContract.IView
             mBodyLayout.setOnCalendarListenerListener(b ? this : null);
             mBodyLayout.setOnPageChangeListener(b ? this : null);
         }
+
+        if (null != mTitleLayout)
+        {
+            mTitleLayout.setOnTitleClickListener(b ? this : null);
+        }
     }
 
     @Override
@@ -142,6 +150,7 @@ public class CalendarView extends LinearLayout implements CalendarContract.IView
             if (view instanceof GridItemView)
             {
                 ((GridItemView)view).setNationBackground(mNormalSelectDrawable);
+                ((GridItemView)view).setNationTextColor(Color.WHITE);
             }
         }
     }
@@ -158,6 +167,7 @@ public class CalendarView extends LinearLayout implements CalendarContract.IView
         if (null != view && view instanceof GridItemView)
         {
             ((GridItemView)view).setNationBackground(null);
+            ((GridItemView)view).setNationTextColor(Color.BLACK);
         }
     }
 
@@ -169,7 +179,17 @@ public class CalendarView extends LinearLayout implements CalendarContract.IView
             if (null != view && view instanceof GridItemView)
             {
                 ((GridItemView)view).setNationBackground(mTodayDrawable);
+                ((GridItemView)view).setNationTextColor(Color.BLACK);
             }
+        }
+    }
+
+    @Override
+    public void setCurrentItem(int position)
+    {
+        if (null != mBodyLayout)
+        {
+            mBodyLayout.setCurrentItem(position);
         }
     }
 
@@ -243,5 +263,23 @@ public class CalendarView extends LinearLayout implements CalendarContract.IView
     public void onPageScrollStateChanged(int state)
     {
 
+    }
+
+    @Override
+    public void onLeftBtnClick(View view)
+    {
+        if (null != mPresenter)
+        {
+            mPresenter.clickLeft();
+        }
+    }
+
+    @Override
+    public void onRightBtnClick(View view)
+    {
+        if (null != mPresenter)
+        {
+            mPresenter.clickRight();
+        }
     }
 }

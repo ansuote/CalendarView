@@ -195,4 +195,12 @@ public class CalendarBody extends LinearLayout{
         }
         mListener = null;
     }
+
+    public void setCurrentItem(int position)
+    {
+        if (null != mViewPager)
+        {
+            mViewPager.setCurrentItem(position);
+        }
+    }
 }

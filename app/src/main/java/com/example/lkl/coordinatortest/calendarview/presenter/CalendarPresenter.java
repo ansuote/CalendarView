@@ -156,6 +156,26 @@ public class CalendarPresenter implements CalendarContract.IPresenter{
 		}
 	}
 
+	@Override
+	public void clickLeft()
+	{
+		mCurrentItem = mCurrentItem -1;
+		if (null != mIView)
+		{
+			mIView.setCurrentItem(mCurrentItem);
+		}
+	}
+
+	@Override
+	public void clickRight()
+	{
+		mCurrentItem = mCurrentItem +1;
+		if (null != mIView)
+		{
+			mIView.setCurrentItem(mCurrentItem);
+		}
+	}
+
 	/**
 	 * 刷新点击的时候的效果图
 	 * @param parent
