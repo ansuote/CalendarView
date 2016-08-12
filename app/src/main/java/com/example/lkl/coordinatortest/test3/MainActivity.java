@@ -15,6 +15,6 @@ public class MainActivity extends AppCompatActivity {
         CalendarView calendarView = new CalendarView(this);
         setContentView(calendarView);
 
-        Log.e("gpj", "hhh");
+        Log.e("gpj", "Ha...");
     }
 }
