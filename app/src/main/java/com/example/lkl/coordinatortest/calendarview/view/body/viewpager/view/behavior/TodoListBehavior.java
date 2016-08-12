@@ -6,8 +6,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Scroller;
 
-import com.example.lkl.coordinatortest.calendarview.view.body.viewpager.view.gridview.CustomGridView;
 import com.example.lkl.coordinatortest.calendarview.view.body.viewpager.view.PagerItemListTodoView;
+import com.example.lkl.coordinatortest.calendarview.view.body.viewpager.view.gridview.CustomGridView;
 import com.example.lkl.coordinatortest.calendarview.view.body.viewpager.view.gridview.GridAdapter;
 
 /**
@@ -47,13 +47,21 @@ public class TodoListBehavior extends CoordinatorLayout.Behavior<PagerItemListTo
         CustomGridView customGridView = (CustomGridView) parent.getChildAt(0);
         if (null != customGridView)
         {
+            int parentHeight = View.MeasureSpec.getSize(parentHeightMeasureSpec);
+            int height = customGridView.getHeight();
             int row = customGridView.getCount() / GridAdapter.NUM_COLUMS;
             if (row != 0)
             {
-                mMinOffset = customGridView.getHeight() / row;
+                //如果child还没有绘制好，高度仍然为0，则设置默认高度，即 1/2 parent高度
+                if (height == 0)
+                {
+                    height = parentHeight / 2;
+                }
+                Log.i("lkl", "height = " + height);
+                mMinOffset = height / row;
             }
 
-            final int measuredHeight = View.MeasureSpec.getSize(parentHeightMeasureSpec) - heightUsed - mMinOffset;
+            final int measuredHeight = parentHeight - heightUsed - mMinOffset;
             int childMeasureSpec = View.MeasureSpec.makeMeasureSpec(measuredHeight, View.MeasureSpec.EXACTLY);
             child.measure(parentWidthMeasureSpec, childMeasureSpec);
         }

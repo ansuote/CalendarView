@@ -12,23 +12,12 @@ import com.example.lkl.coordinatortest.calendarview.view.body.viewpager.view.beh
  */
 @CoordinatorLayout.DefaultBehavior(CalendarViewBehavior.class)
 public class CustomGridView extends GridView {
-    private int mCurrentItemBottom;//当前点击的itemView的高度
     private View mCurrentView;      //当前点击的itemView
     private int mCount;
 
     public CustomGridView(Context context)
     {
         super(context);
-    }
-
-    public void setCurrentItemBottom(int bottom)
-    {
-        mCurrentItemBottom = bottom;
-    }
-
-    public int getCurrentItemBottom()
-    {
-        return mCurrentItemBottom;
     }
 
     public void setCurrentView(View view)
