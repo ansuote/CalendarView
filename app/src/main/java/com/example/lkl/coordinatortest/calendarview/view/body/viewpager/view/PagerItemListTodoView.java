@@ -19,6 +19,7 @@ import com.example.lkl.coordinatortest.calendarview.view.body.viewpager.view.beh
 @CoordinatorLayout.DefaultBehavior(TodoListBehavior.class)
 public class PagerItemListTodoView extends NestedScrollView{
     private Context mContext;
+    private TextView mLunarTitle;   //农历标题
 
     public PagerItemListTodoView(Context context)
     {
@@ -51,6 +52,15 @@ public class PagerItemListTodoView extends NestedScrollView{
         {
             layout.setOrientation(LinearLayout.VERTICAL);
 
+            mLunarTitle = new TextView(mContext);
+            if (null != mLunarTitle)
+            {
+                mLunarTitle.setText("这个用来显示农历");
+
+                layout.addView(mLunarTitle, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            }
+
+
             for (int i = 0 ; i < 50; i ++)
             {
                 TextView tv = new TextView(mContext);
@@ -69,6 +79,14 @@ public class PagerItemListTodoView extends NestedScrollView{
     private void regEvent(boolean b)
     {
 
+    }
+
+    public void setLunarTitle(String lunarTitle)
+    {
+        if (null != mLunarTitle && null != lunarTitle)
+        {
+            mLunarTitle.setText(lunarTitle);
+        }
     }
 
     public void onDesotry()

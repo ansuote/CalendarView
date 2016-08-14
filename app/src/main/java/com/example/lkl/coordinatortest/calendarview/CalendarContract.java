@@ -19,6 +19,7 @@ public interface CalendarContract {
 		void clearBackground(View view);	//清除背景颜色
 		void setTodayBackground(View view);	//设置今天的图标
 		void setCurrentItem(int position);	//设置当前的viewpager
+		void setLunarTitle(String lunarTitle);
 		void onDestory();
 	}
 	
@@ -32,7 +33,7 @@ public interface CalendarContract {
 		void setItemData(int position, CalendarFragment fragment);
 		void destroyItemData(int position);
 		void resetCurrentItem(int position);	//重置当前的position
-		void loadTitleData();
+		void loadTitleData(int position);
 		void clickItem(AdapterView<?> parent, View view, int position, long id);	//点击某一天执行的动作
 		void clickLeft();
 		void clickRight();

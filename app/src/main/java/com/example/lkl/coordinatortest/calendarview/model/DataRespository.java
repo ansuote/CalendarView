@@ -62,9 +62,10 @@ public class DataRespository implements DataContract{
         ArrayList<CalendarBean> list = new ArrayList<CalendarBean>();
         if (null != list)
         {
-            if (dayOfWeek != 7) //如果第一天是星期日,则补全上个月数据
+            int j = 0;  //需要补全的天数
+            if (dayOfWeek != 7) //如果第一天不是星期日,则补全上个月数据
             {
-                for(int i = 0; i < dayOfWeek; i++)
+                for(j = 0; j < dayOfWeek; j++)
                 {
                     list.add(null);
                 }
@@ -75,7 +76,7 @@ public class DataRespository implements DataContract{
                 CalendarBean bean = new CalendarBean();
                 if (null != bean)
                 {
-                    lunarDay = lc.getLunarDate(year, month, i - dayOfWeek + 1, false);
+                    lunarDay = lc.getLunarDate(year, month, j + 1 + i - dayOfWeek + 1, false);
                     bean.setLunarCanlendar(lunarDay);
                     bean.setYear(year);
                     bean.setMonth(month);
@@ -156,6 +157,15 @@ public class DataRespository implements DataContract{
             }
         }
 
+    }
+
+    /**
+     * 获取当前日期
+     * @return
+     */
+    public int getCurrentDay()
+    {
+        return  day_c;
     }
 
     public static int dip2px(Context context, float dipValue) {

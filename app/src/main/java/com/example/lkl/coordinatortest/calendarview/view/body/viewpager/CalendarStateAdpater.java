@@ -10,7 +10,7 @@ import com.example.lkl.coordinatortest.calendarview.view.body.OnCalendarListener
 
 public class CalendarStateAdpater extends FragmentStatePagerAdapter {
 	private OnCalendarListener mListener;
-
+	private CalendarFragment mCalendarFragment;
 	public CalendarStateAdpater(FragmentManager fm)
 	{
 		super(fm);
@@ -19,12 +19,12 @@ public class CalendarStateAdpater extends FragmentStatePagerAdapter {
 	@Override
 	public Fragment getItem(int position)
 	{
-		CalendarFragment fragment = CalendarFragment.create(position);
-		if (null != fragment)
+		mCalendarFragment = CalendarFragment.create(position);
+		if (null != mCalendarFragment)
 		{
-			fragment.setOnCalendarListener(mListener);
+			mCalendarFragment.setOnCalendarListener(mListener);
 		}
-		return fragment;
+		return mCalendarFragment;
 	}
 
 	@Override
@@ -46,6 +46,14 @@ public class CalendarStateAdpater extends FragmentStatePagerAdapter {
 	public void setOnCalendarListener(OnCalendarListener listener)
 	{
 		mListener = listener;
+	}
+
+	public void setLunarTitle(String lunarTitle)
+	{
+		if (null != mCalendarFragment)
+		{
+			mCalendarFragment.setLunarTitle(lunarTitle);
+		}
 	}
 
 	public void onDestory()

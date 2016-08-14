@@ -158,4 +158,14 @@ public class PagerItemView extends CoordinatorLayout implements AdapterView.OnIt
     {
         mListener = listener;
     }
+
+
+    public void setLunarTitle(String lunarTitle)
+    {
+        if (null != mPlanLayout)
+        {
+            mPlanLayout.setLunarTitle(lunarTitle);
+        }
+    }
+
 }
