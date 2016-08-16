@@ -6,7 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Scroller;
 
-import com.example.lkl.coordinatortest.calendarview.view.body.viewpager.view.PagerItemListTodoView;
+import com.example.lkl.coordinatortest.calendarview.view.body.viewpager.view.todoview.PagerItemListTodoView;
 import com.example.lkl.coordinatortest.calendarview.view.body.viewpager.view.gridview.CustomGridView;
 import com.example.lkl.coordinatortest.calendarview.view.body.viewpager.view.gridview.GridAdapter;
 

@@ -183,6 +183,14 @@ public class CalendarPresenter implements CalendarContract.IPresenter{
 						CalendarFragment fragment = mViewMap.get(pagePosition);
 						if (null != fragment)
 						{
+							lunarString = "农历" + lunarString;
+
+							//如果是今天，则增加今天前缀
+							boolean isToday = bean.getIsToday();
+							if (isToday)
+							{
+								lunarString = "今天    " + lunarString;
+							}
 							fragment.setLunarTitle(lunarString);
 						}
 					}

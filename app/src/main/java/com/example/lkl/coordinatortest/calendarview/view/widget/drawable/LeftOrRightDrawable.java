@@ -20,9 +20,30 @@ public class LeftOrRightDrawable extends Drawable{
     private float mStrokeWidth = 1.5f;
     private float mDensity ;
     private boolean mIsRight;     //是否向右
+    private int mPaddingLeft;
+    private int mPaddingTop;
+    private int mPaddingRight;
+    private int mPaddingBottom;
 
     public LeftOrRightDrawable(Context context)
     {
+        initPaint(context);
+    }
+
+    /**
+     * 带设置边距的构造参数
+     * @param context
+     * @param left
+     * @param top
+     * @param right
+     * @param bottom
+     */
+    public LeftOrRightDrawable(Context context, int left, int top, int right, int bottom)
+    {
+        mPaddingLeft = left;
+        mPaddingTop = top;
+        mPaddingRight = right;
+        mPaddingBottom = bottom;
         initPaint(context);
     }
 
@@ -33,6 +54,11 @@ public class LeftOrRightDrawable extends Drawable{
         //宽度乘以密度值
         mDensity = context.getResources().getDisplayMetrics().density;
         mStrokeWidth = mStrokeWidth * mDensity;
+
+        mPaddingLeft = (int)(mPaddingLeft * mDensity);
+        mPaddingTop = (int)(mPaddingTop * mDensity);
+        mPaddingRight = (int)(mPaddingRight * mDensity);
+        mPaddingBottom = (int) (mPaddingBottom * mDensity);
 
         if (null == mPaint)
         {
@@ -60,10 +86,10 @@ public class LeftOrRightDrawable extends Drawable{
         Path path = new Path();
         if (null != path)
         {
-            float left = paintOffset;
-            float top = paintOffset;
-            float right = width - paintOffset;
-            float bottom = heigth - paintOffset;
+            float left = paintOffset + mPaddingLeft;
+            float top = paintOffset + mPaddingTop;
+            float right = width - paintOffset - mPaddingRight;
+            float bottom = heigth - paintOffset - mPaddingBottom;
 
             RectF pathRectf = new RectF(left, top, right, bottom);
             if (null != pathRectf)

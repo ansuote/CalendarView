@@ -15,6 +15,7 @@ import com.example.lkl.coordinatortest.calendarview.model.CalendarBean;
 import com.example.lkl.coordinatortest.calendarview.view.body.OnCalendarListener;
 import com.example.lkl.coordinatortest.calendarview.view.body.viewpager.view.gridview.CustomGridView;
 import com.example.lkl.coordinatortest.calendarview.view.body.viewpager.view.gridview.GridAdapter;
+import com.example.lkl.coordinatortest.calendarview.view.body.viewpager.view.todoview.PagerItemListTodoView;
 
 import java.util.List;
 
@@ -83,7 +84,7 @@ public class PagerItemView extends CoordinatorLayout implements AdapterView.OnIt
             mPlanLayout = new PagerItemListTodoView(mContext);
             if (null != mPlanLayout)
             {
-                mPlanLayout.setBackgroundColor(Color.YELLOW);
+                mPlanLayout.setBackgroundColor(Color.WHITE);
                 lp = new LayoutParams(LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 if (null != lp)
                 {

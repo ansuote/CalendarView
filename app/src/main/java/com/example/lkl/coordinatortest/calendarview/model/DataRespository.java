@@ -1,6 +1,9 @@
 package com.example.lkl.coordinatortest.calendarview.model;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.example.lkl.coordinatortest.calendarview.model.util.LunarCalendar;
 import com.example.lkl.coordinatortest.calendarview.model.util.SpecialCalendar;
@@ -76,7 +79,8 @@ public class DataRespository implements DataContract{
                 CalendarBean bean = new CalendarBean();
                 if (null != bean)
                 {
-                    lunarDay = lc.getLunarDate(year, month, j + 1 + i - dayOfWeek + 1, false);
+                    lunarDay = lc.getLunarDate(year, month, j + 1 + i - dayOfWeek + 1, true);
+                    lunarDay = lc.getLunarMonth() + lunarDay;
                     bean.setLunarCanlendar(lunarDay);
                     bean.setYear(year);
                     bean.setMonth(month);
@@ -172,6 +176,54 @@ public class DataRespository implements DataContract{
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dipValue * scale + 0.5f);
     }
+
+    /**
+     * 增加分隔线
+     * @param context
+     * @param layout        父布局
+     * @param orientation   方向
+     */
+    public static void addLineView(Context context, LinearLayout layout, int orientation)
+    {
+        if (null != context && null != layout)
+        {
+            int lineLength = DataRespository.dip2px(context, 1);
+            View lineView = new View(context);
+            if (null != lineView)
+            {
+                lineView.setBackgroundColor(Color.parseColor("#E0E0E0"));
+                if (orientation == LinearLayout.HORIZONTAL)
+                {
+                    layout.addView(lineView, LinearLayout.LayoutParams.MATCH_PARENT, lineLength);
+                }
+                else if (orientation == LinearLayout.VERTICAL)
+                {
+                    layout.addView(lineView, lineLength, LinearLayout.LayoutParams.MATCH_PARENT);
+                }
+            }
+        }
+    }
+
+    /**
+     * 增加分隔线
+     * @param context
+     * @param layout        父布局
+     * @param orientation   方向
+     * @param left   边距
+     * @param top
+     * @param right
+     * @param bottom
+     */
+    public static void addLineView(Context context, LinearLayout layout, int orientation,
+                                    int left, int top, int right, int bottom)
+    {
+        if (null != context && null != layout)
+        {
+            layout.setPadding(left, top, right, bottom);
+            addLineView(context, layout, orientation);
+        }
+    }
+
 
     public void onDestory()
     {

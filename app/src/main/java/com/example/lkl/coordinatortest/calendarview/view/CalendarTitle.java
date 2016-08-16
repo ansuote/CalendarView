@@ -56,10 +56,9 @@ public class CalendarTitle extends LinearLayout implements View.OnClickListener{
         LayoutParams lp = null;
         try
         {
-            int lineLength = DataRespository.dip2px(mContext, 1);
             int padding5 = DataRespository.dip2px(mContext, 5);
             int padding10 = DataRespository.dip2px(mContext, 10);
-            int length15 = DataRespository.dip2px(mContext, 15);
+            int length15 = DataRespository.dip2px(mContext, 25);
 
             this.setOrientation(LinearLayout.VERTICAL);
 
@@ -75,7 +74,7 @@ public class CalendarTitle extends LinearLayout implements View.OnClickListener{
                 mLeftBtn = new LButtonBg(mContext);
                 if (null != mLeftBtn)
                 {
-                    setPageBtnParams(mLeftBtn, false, length15, padding10);
+                    setPageBtnParams(mLeftBtn, false, length15);
                     mButtonLayout.addView(mLeftBtn);
                 }
 
@@ -85,6 +84,7 @@ public class CalendarTitle extends LinearLayout implements View.OnClickListener{
                 {
                     mTitle.setGravity(Gravity.CENTER_VERTICAL);
                     mTitle.setTextSize(16);
+                    mTitle.setPadding(length15, 0, length15, 0);
                     mButtonLayout.addView(mTitle, LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
                 }
 
@@ -92,7 +92,7 @@ public class CalendarTitle extends LinearLayout implements View.OnClickListener{
                 mRightBtn = new LButtonBg(mContext);
                 if (null != mRightBtn)
                 {
-                    setPageBtnParams(mRightBtn, true, length15, padding10);
+                    setPageBtnParams(mRightBtn, true, length15);
                     mButtonLayout.addView(mRightBtn);
                 }
 
@@ -107,7 +107,7 @@ public class CalendarTitle extends LinearLayout implements View.OnClickListener{
             }
 
 
-            addLineView(lineLength);
+            DataRespository.addLineView(mContext, this, LinearLayout.HORIZONTAL);
 
             //标题部分： 周日  周一 .... 周六
             LinearLayout weekTitle = new LinearLayout(mContext);
@@ -153,8 +153,7 @@ public class CalendarTitle extends LinearLayout implements View.OnClickListener{
             }
 
             //分割线
-            addLineView(lineLength);
-
+            DataRespository.addLineView(mContext, this, LinearLayout.HORIZONTAL);
         }
         catch (Exception e)
         {
@@ -195,20 +194,7 @@ public class CalendarTitle extends LinearLayout implements View.OnClickListener{
         }
     }
 
-    /**
-     * 增加分隔线
-     * @param lineLength
-     * @return
-     */
-    public void addLineView(int lineLength)
-    {
-        View lineView = new View(mContext);
-        if (null != lineView)
-        {
-            lineView.setBackgroundColor(Color.parseColor("#E0E0E0"));
-            this.addView(lineView, LayoutParams.MATCH_PARENT, lineLength);
-        }
-    }
+
 
     @Override
     public void onClick(View v)
@@ -229,12 +215,13 @@ public class CalendarTitle extends LinearLayout implements View.OnClickListener{
      * 设置上一页，下一页按钮的属性
      * @param isRight
      */
-    private void setPageBtnParams(LButtonBg btn, boolean isRight, int length, int margin)
+    private void setPageBtnParams(LButtonBg btn, boolean isRight, int length)
     {
         if (null != btn)
         {
-            LeftOrRightDrawable drawableNormal = new LeftOrRightDrawable(mContext);
-            LeftOrRightDrawable drawablePress = new LeftOrRightDrawable(mContext);
+
+            LeftOrRightDrawable drawableNormal = new LeftOrRightDrawable(mContext, 5, 5, 5, 5);
+            LeftOrRightDrawable drawablePress = new LeftOrRightDrawable(mContext, 5, 5, 5, 5);
             if (null != drawableNormal && null != drawablePress)
             {
                 drawableNormal.setIsRight(isRight);
@@ -246,7 +233,7 @@ public class CalendarTitle extends LinearLayout implements View.OnClickListener{
             LayoutParams lp = new LayoutParams(length, length);
             if (null != lp)
             {
-                lp.setMargins(margin, margin, margin , margin);
+                //lp.setMargins(margin, margin, margin , margin);
                 btn.setLayoutParams(lp);
             }
         }

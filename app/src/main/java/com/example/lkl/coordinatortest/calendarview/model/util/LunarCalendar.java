@@ -251,9 +251,9 @@ public class LunarCalendar {
 				}
 			}
 		}
-		if (day == 1)
+		/*if (day == 1)
 			return chineseNumber[month - 1] + "月";
-		else
+		else*/
 			return getChinaDayString(day);
 
 	}
