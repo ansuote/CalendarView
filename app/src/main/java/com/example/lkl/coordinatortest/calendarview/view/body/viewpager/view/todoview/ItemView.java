@@ -114,7 +114,10 @@ public class ItemView extends LinearLayout{
                             if (null != circleDrawable)
                             {
                                 circleDrawable.setColor(mCicleColor);
-                                circle.setBackground(circleDrawable);
+                                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
+                                {
+                                    circle.setBackground(circleDrawable);
+                                }
                             }
 
                             RelativeLayout.LayoutParams circleLp = new RelativeLayout.LayoutParams(length4, length4);
