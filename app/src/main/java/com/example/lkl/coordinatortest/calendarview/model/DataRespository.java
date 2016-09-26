@@ -79,7 +79,7 @@ public class DataRespository implements DataContract{
                 CalendarBean bean = new CalendarBean();
                 if (null != bean)
                 {
-                    lunarDay = lc.getLunarDate(year, month, j + 1 + i - dayOfWeek + 1, true);
+                    lunarDay = lc.getLunarDate(year, month, j + 1 + i - dayOfWeek, true);
                     lunarDay = lc.getLunarMonth() + lunarDay;
                     bean.setLunarCanlendar(lunarDay);
                     bean.setYear(year);
