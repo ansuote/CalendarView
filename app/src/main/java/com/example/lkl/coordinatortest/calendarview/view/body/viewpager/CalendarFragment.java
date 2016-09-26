@@ -87,4 +87,12 @@ public class CalendarFragment extends Fragment {
 	{
 		mListener = listener;
 	}
+
+	public void setLunarTitle(String lunarTitle)
+	{
+		if (null != mView)
+		{
+			mView.setLunarTitle(lunarTitle);
+		}
+	}
 }

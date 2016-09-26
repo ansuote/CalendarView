@@ -203,4 +203,12 @@ public class CalendarBody extends LinearLayout{
             mViewPager.setCurrentItem(position);
         }
     }
+
+    public void setLunarTitle(String lunarTitle)
+    {
+        if (null != mPagerAdapter)
+        {
+            mPagerAdapter.setLunarTitle(lunarTitle);
+        }
+    }
 }

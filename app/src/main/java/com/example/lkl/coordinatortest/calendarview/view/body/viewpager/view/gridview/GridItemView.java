@@ -1,7 +1,9 @@
 package com.example.lkl.coordinatortest.calendarview.view.body.viewpager.view.gridview;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
@@ -94,11 +96,15 @@ public class GridItemView extends LinearLayout {
 	 * 设置背景
 	 * @param drawable
      */
+	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 	public void setNationBackground(Drawable drawable)
 	{
 		if (null != mNation)
 		{
-			mNation.setBackground(drawable);
+			if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
+			{
+				mNation.setBackground(drawable);
+			}
 		}
 	}
 

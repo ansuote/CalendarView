@@ -255,7 +255,7 @@ public class CalendarView extends LinearLayout implements CalendarContract.IView
         if (null != mPresenter)
         {
             mPresenter.resetCurrentItem(position);
-            mPresenter.loadTitleData();
+            mPresenter.loadTitleData(position);
         }
     }
 
@@ -280,6 +280,14 @@ public class CalendarView extends LinearLayout implements CalendarContract.IView
         if (null != mPresenter)
         {
             mPresenter.clickRight();
+        }
+    }
+
+    public void setLunarTitle(String lunarTitle)
+    {
+        if (null != mBodyLayout)
+        {
+            mBodyLayout.setLunarTitle(lunarTitle);
         }
     }
 }
